@@ -18,7 +18,7 @@ t_list *node_creation(int argc, char **argv)
 	j = 0;
 	while (i < argc)
 	{
-		while(j != '+' && j != '-' && !ft_isdigit(argv[i][j]))
+		while(argv[i][j] != '+' && argv[i][j] != '-' && !ft_isdigit(argv[i][j]))
 			j = j + 1; // Skip all the whitespaces beginning, middle and end
 		sign = 1;
 		if (argv[i][j] == '-' || argv[i][j] == '+')
