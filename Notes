@@ -18,9 +18,12 @@ What if the number is greater than INT_MAX or lesser than INT_MIN?
 4. If it is > 10 digits, and it is a negative number, then fail it immediately.
 5. If it is = 10 digits, and negative, then check whether it is >= INT_MIN
 
+Duplicate checking:
+1. After we create the nodes, the duplicates are checked.
+2. If any are found, then the list is cleared in the main function, and I return NULL.
+
 TO DO:
 1. Handle malloc failure for ft_substr
 2. Clean up the code for node creation
-3. Go through the linked list functions
-4. Negative numbers are not being handled appropriately in the node creation process.
-5. Focus on the check duplicates function
+3. Go through the linked list functions - In progress
+4. When 3 or more numbers are being entered in between " ", then there is an error in parsing. - Done

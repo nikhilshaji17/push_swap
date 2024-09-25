@@ -54,7 +54,7 @@ t_list *node_creation(int argc, char **argv)
 			else
 			{
 				temp = ft_lstnew(content);
-				if (temp == NULL)
+				if (temp == NULL) // malloc failed
 				{
 					ft_lstclear(&new_stack);
 					return (NULL);
@@ -62,7 +62,9 @@ t_list *node_creation(int argc, char **argv)
 				ft_lstadd_back(&new_stack, temp);
 			}
 		}
-		if (argv[i][j] == '\0')
+		if (argv[i][j] >= 9 && argv[i][j] <= 32)
+			length = 0;
+		else if (argv[i][j] == '\0')
 		{
 			length = 0;
 			j = 0;
