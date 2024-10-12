@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkunnath <nkunnath@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/26 12:36:33 by nkunnath          #+#    #+#             */
+/*   Updated: 2024/09/26 12:36:35 by nkunnath         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 long long	ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
+	int			i;
+	int			sign;
 	long long	answer;
 
 	i = 0;
@@ -32,6 +44,13 @@ long long	ft_atoi(const char *str)
 int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+int	is_space(int c)
+{
+	if (c >= 9 && c <= 32)
 		return (1);
 	return (0);
 }

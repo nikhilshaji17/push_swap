@@ -1,75 +1,80 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   node_creation.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkunnath <nkunnath@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/26 12:24:19 by nkunnath          #+#    #+#             */
+/*   Updated: 2024/09/26 12:24:20 by nkunnath         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-t_list *node_creation(int argc, char **argv)
+static long long	verify_input(char *input, int *j)
+{
+	char		*atoi_str;
+	int			str_length;
+	int			sign;
+
+	str_length = 0;
+	while (is_space(input[*j]))
+		*j = *j + 1;
+	sign = 1;
+	if (input[*j] == '-' || input[*j] == '+')
+	{
+		*j += 1;
+		str_length += 1;
+		if (input[*j] == '-')
+			sign = -1;
+	}
+	while (ft_isdigit(input[*j]))
+	{
+		str_length = str_length + 1;
+		if (str_length > 11)
+			return (-2147483649);
+		*j += 1;
+	}
+	atoi_str = ft_substr(input, *j - str_length, str_length); // Handle malloc failure here
+	return (sign * ft_atoi(atoi_str));
+}
+
+static int	check_end(char *input, int i, int *j)
+{
+	while (is_space(input[*j]))
+		(*j)++;
+	if (input[*j] == '\0')
+	{
+		*j = 0;
+		return (i + 1);
+	}
+	return (i);
+}
+
+t_list	*node_creation(int argc, char **argv)
 {
 	t_list		*new_stack;
 	t_list		*temp;
 	long long	content;
 	int			i;
 	int			j;
-	int			sign;
-	char		*atoi_str;
-	int			length;
 
 	i = 1;
 	new_stack = NULL;
 	temp = NULL;
-	length = 0;
 	j = 0;
 	while (i < argc)
 	{
-		while(argv[i][j] != '+' && argv[i][j] != '-' && !ft_isdigit(argv[i][j]))
-			j = j + 1; // Skip all the whitespaces beginning, middle and end
-		sign = 1;
-		if (argv[i][j] == '-' || argv[i][j] == '+')
-		{
-			j += 1;
-			length += 1;
-		}
-		while (ft_isdigit(argv[i][j]))
-		{
-			length = length + 1;
-			if (length > 10)
-			{
-				ft_lstclear(&new_stack);
-				return (NULL);
-			}
-			j += 1;
-		}
-		atoi_str = ft_substr(argv[i], j - length, length);
-		content = sign * ft_atoi(atoi_str);
-		if (content < INT_MIN || content > INT_MAX)
-		{
-			ft_lstclear(&new_stack);
-			return (NULL);
-		}
-		else
-		{
-			if (new_stack == NULL)
-			{
-				new_stack = ft_lstnew(content); 
-				if (new_stack == NULL) // malloc failed
-					return (NULL);
-			}
-			else
-			{
-				temp = ft_lstnew(content);
-				if (temp == NULL) // malloc failed
-				{
-					ft_lstclear(&new_stack);
-					return (NULL);
-				}
-				ft_lstadd_back(&new_stack, temp);
-			}
-		}
-		if (argv[i][j] >= 9 && argv[i][j] <= 32)
-			length = 0;
-		else if (argv[i][j] == '\0')
-		{
-			length = 0;
-			j = 0;
-			i = i + 1; // Move to the next element if we finished this current string
-		}
+		content = verify_input(argv[i], &j);
+		if (!content || content < INT_MIN || content > INT_MAX)
+			return (ft_lstclear(&new_stack), NULL);
+		temp = ft_lstnew(content);
+		if (temp == NULL)
+			return (ft_lstclear(&new_stack), NULL);
+		ft_lstadd_back(&new_stack, temp);
+		i = check_end(argv[i], i, &j);
 	}
+	//index here
 	return (new_stack);
 }

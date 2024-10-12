@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nkunnath <nkunnath@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/26 12:36:11 by nkunnath          #+#    #+#             */
+/*   Updated: 2024/09/26 12:36:13 by nkunnath         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_list	*ft_lstnew(int content)
@@ -46,4 +58,23 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		node = node->next;
 	node->next = new;
 	return ;
+}
+
+void	ft_lstdelone(t_list *lst)
+{
+	if (lst == NULL)
+		return ;
+	free(lst);
+}
+
+t_list	*ft_lstlast(t_list *lst)
+{
+	t_list	*node;
+
+	node = lst;
+	if (lst == NULL)
+		return (NULL);
+	while (node->next != NULL)
+		node = node->next;
+	return (node);
 }
