@@ -10,15 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static int	skip_space(char *input, int index)
+static int	skip_space(char *input, int index, int length)
 {
 	int	j;
-	int	length;
 
 	j = index;
-	length = ft_strlen(input);
 	while (j < length)
 	{
 		if (!is_space(input[j]))
@@ -44,7 +42,7 @@ static int	is_valid(int j, char *input, int length)
 			if (input[j] != '+' && input[j] != '-' && !(is_space(input[j])))
 				return (0);
 			else if (is_space(input[j]))
-				j = skip_space(input, j) - 1;
+				j = skip_space(input, j, length) - 1;
 			else if (input[j] == '-' || input[j] == '+')
 			{
 				if (j != 0 && !is_space(input[j - 1]))
@@ -69,8 +67,8 @@ int	check_input(int argc, char **argv)
 	while (i < argc)
 	{
 		input = argv[i];
-		j = skip_space(input, 0);
 		length = ft_strlen(input);
+		j = skip_space(input, 0, length);
 		if (length == 0 || j == length)
 			return (0);
 		if (!is_valid(j, input, length))

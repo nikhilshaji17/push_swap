@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 t_list	*ft_lstnew(int content)
 {
@@ -21,6 +21,9 @@ t_list	*ft_lstnew(int content)
 		return (NULL);
 	node->content = content;
 	node->next = NULL;
+	node->binary = 0;
+	node->index = 0;
+	node->flag = 0;
 	return (node);
 }
 
@@ -65,16 +68,4 @@ void	ft_lstdelone(t_list *lst)
 	if (lst == NULL)
 		return ;
 	free(lst);
-}
-
-t_list	*ft_lstlast(t_list *lst)
-{
-	t_list	*node;
-
-	node = lst;
-	if (lst == NULL)
-		return (NULL);
-	while (node->next != NULL)
-		node = node->next;
-	return (node);
 }

@@ -10,13 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
+
+static	long long	make_str(char *input, int *j, int str_len)
+{
+	char				*atoi_str;
+	long long			answer;
+
+	atoi_str = ft_substr(input, *j - str_len, str_len);
+	if (atoi_str == NULL)
+		return (-2147483649);
+	answer = ft_atoi(atoi_str);
+	free(atoi_str);
+	return (answer);
+}
 
 static long long	verify_input(char *input, int *j)
 {
-	char		*atoi_str;
-	int			str_length;
-	int			sign;
+	int					str_length;
+	int					sign;
+	long long			content;
 
 	str_length = 0;
 	while (is_space(input[*j]))
@@ -36,8 +49,8 @@ static long long	verify_input(char *input, int *j)
 			return (-2147483649);
 		*j += 1;
 	}
-	atoi_str = ft_substr(input, *j - str_length, str_length); // Handle malloc failure here
-	return (sign * ft_atoi(atoi_str));
+	content = sign * make_str(input, j, str_length);
+	return (content);
 }
 
 static int	check_end(char *input, int i, int *j)
@@ -75,6 +88,5 @@ t_list	*node_creation(int argc, char **argv)
 		ft_lstadd_back(&new_stack, temp);
 		i = check_end(argv[i], i, &j);
 	}
-	//index here
 	return (new_stack);
 }

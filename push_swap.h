@@ -19,9 +19,11 @@
 
 typedef struct s_list
 {
-	int				content;
-	int				index;
-	struct s_list	*next;
+	int							content;
+	long long					index;
+	int							binary;
+	int							flag;
+	struct s_list				*next;
 }	t_list;
 
 int				check_duplicates(t_list *stack_a);
@@ -33,6 +35,10 @@ size_t			ft_strlen(const char *str);
 int				is_space(int c);
 
 void			sort_stacks(t_list **stack_a, t_list **stack_b);
+void			three_sort(t_list **stack_a);
+void			four_sort(t_list **stack_a, t_list **stack_b);
+void			five_sort(t_list **stack_a, t_list **stack_b);
+void			big_sort(t_list **stack_a, t_list **stack_b);
 
 void			swap_a(t_list *stack_a);
 void			swap_b(t_list *stack_b);
@@ -49,6 +55,7 @@ void			rotate_both(t_list *stack_a, t_list *stack_b);
 t_list			*node_creation(int argc, char **argv);
 t_list			*ft_lstnew(int content);
 void			ft_lstadd_back(t_list **lst, t_list *new);
+void			ft_lstadd_front(t_list **lst, t_list *new);
 void			ft_lstclear(t_list **lst);
 void			ft_lstdelone(t_list *lst);
 t_list			*ft_lstlast(t_list *lst);

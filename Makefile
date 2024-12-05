@@ -1,0 +1,1 @@
+cc main.c input\ parsing/*.c node\ creation\ and\ duplicate\ check/*.c sorting\ algorithms/*.c utility\ functions/*.c -o executable

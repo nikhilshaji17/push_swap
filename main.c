@@ -12,14 +12,6 @@
 
 #include "push_swap.h"
 
-void print_list(t_list *head)
-{
-	if (!head)
-		return ;
-	printf("%i, ", head->content);
-	print_list(head->next);
-}
-
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
