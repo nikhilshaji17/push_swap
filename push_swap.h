@@ -12,16 +12,17 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+# define INPUT_ERROR 1
 
-# include <stdio.h>
 # include <limits.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
 	int							content;
 	long long					index;
-	int							binary;
 	int							flag;
 	struct s_list				*next;
 }	t_list;
@@ -60,5 +61,12 @@ void			ft_lstclear(t_list **lst);
 void			ft_lstdelone(t_list *lst);
 t_list			*ft_lstlast(t_list *lst);
 int				ft_lstsize(t_list *lst);
+
+void			ft_putchar(char c, int *num_printed);
+void			ft_putstr(char *s, int *num_printed);
+void			ft_putnbr(int n, int *num_printed);
+void			ft_putunbr(unsigned int n, int *num_printed);
+void			ft_puthex(unsigned long long n, char c, int *num_printed);
+int				ft_printf(const char *format, ...);
 
 #endif

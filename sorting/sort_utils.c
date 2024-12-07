@@ -88,7 +88,6 @@ void	big_sort(t_list **stack_a, t_list **stack_b)
 {
 	int		max_bits;
 	int		i;
-	int		list_size;
 	int		count;
 
 	max_bits = 0;

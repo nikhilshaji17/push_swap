@@ -57,7 +57,7 @@ static int	check_end(char *input, int i, int *j)
 {
 	while (is_space(input[*j]))
 		(*j)++;
-	if (input[*j] == '\0')
+	if (input[*j] == 0)
 	{
 		*j = 0;
 		return (i + 1);
@@ -80,7 +80,7 @@ t_list	*node_creation(int argc, char **argv)
 	while (i < argc)
 	{
 		content = verify_input(argv[i], &j);
-		if (!content || content < INT_MIN || content > INT_MAX)
+		if (content < INT_MIN || content > INT_MAX)
 			return (ft_lstclear(&new_stack), NULL);
 		temp = ft_lstnew(content);
 		if (temp == NULL)

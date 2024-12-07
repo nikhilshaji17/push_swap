@@ -12,36 +12,46 @@
 
 #include "../push_swap.h"
 
-void	swap_a(t_list *stack_a)
+void	rev_rotate_a(t_list **stack_a)
 {
-	t_list	*node;
-	int		temp;
+	t_list	*second_last;
+	t_list	*last;
 
-	node = stack_a;
-	if (!node || !node->next)
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
-	temp = node->content;
-	node->content = node->next->content;
-	node->next->content = temp;
-	printf("sa\n");
+	second_last = *stack_a;
+	last = *stack_a;
+	while (last->next)
+		last = last->next;
+	while (second_last->next->next)
+		second_last = second_last->next;
+	last->next = *stack_a;
+	second_last->next = NULL;
+	*stack_a = last;
+	ft_printf("rra\n");
 }
 
-void	swap_b(t_list *stack_b)
+void	rev_rotate_b(t_list **stack_b)
 {
-	t_list	*node;
-	int		temp;
+	t_list	*second_last;
+	t_list	*last;
 
-	node = stack_b;
-	if (!node || !node->next)
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
-	temp = node->content;
-	node->content = node->next->content;
-	node->next->content = temp;
-	printf("sb\n");
+	second_last = *stack_b;
+	last = *stack_b;
+	while (last->next)
+		last = last->next;
+	while (second_last->next->next)
+		second_last = second_last->next;
+	last->next = *stack_b;
+	second_last->next = NULL;
+	*stack_b = last;
+	ft_printf("rrb\n");
 }
 
-void	swap_both(t_list *stack_a, t_list *stack_b)
+void	rev_rotate_both(t_list **stack_a, t_list **stack_b)
 {
-	swap_a(stack_a);
-	swap_b(stack_b);
+	rev_rotate_a(stack_a);
+	rev_rotate_b(stack_b);
 }

@@ -19,24 +19,22 @@ int	main(int argc, char **argv)
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if (argc <= 1 || check_input(argc, argv) == 0)
+	if (argc <= 1)
+		exit(0);
+	if (check_input(argc, argv) == 0)
 	{
-		printf("Incorrect Input\n");
-		return (0);
+		ft_printf("Error\n");
+		exit(INPUT_ERROR);
 	}
 	stack_a = node_creation(argc, argv);
-	if (stack_a == NULL)
+	if (stack_a == NULL || check_duplicates(stack_a) == 0)
 	{
-		printf("Node creation failed\n");
-		return (0);
-	}
-	printf("Stack Created\n");
-	if (check_duplicates(stack_a) == 0)
-	{
-		printf("Duplicates found\n");
+		ft_printf("Error\n");
 		ft_lstclear(&stack_a);
-		return (0);
+		exit(INPUT_ERROR);
 	}
 	sort_stacks(&stack_a, &stack_b);
-	return (0);
+	ft_lstclear(&stack_a);
+	ft_lstclear(&stack_b);
+	exit(0);
 }

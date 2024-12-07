@@ -87,11 +87,32 @@ void	five_sort(t_list **a, t_list **b)
 	}
 }
 
+static int	is_sorted(t_list **stack_a)
+{
+	t_list	*temp;
+	int		flag;
+
+	temp = *stack_a;
+	flag = 1;
+	while (temp->next)
+	{
+		if (temp->content > temp->next->content)
+		{
+			flag = 0;
+			break ;
+		}
+		temp = temp->next;
+	}
+	return (flag);
+}
+
 void	sort_stacks(t_list **stack_a, t_list **stack_b)
 {
 	int	stack_size;
 
 	stack_size = ft_lstsize(*stack_a);
+	if (is_sorted(stack_a))
+		return ;
 	if (stack_size == 1)
 		return ;
 	else if (stack_size == 2)
