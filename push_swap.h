@@ -49,9 +49,9 @@ void			push_b(t_list **stack_a, t_list **stack_b);
 void			rev_rotate_a(t_list **stack_a);
 void			rev_rotate_b(t_list **stack_b);
 void			rev_rotate_both(t_list **stack_a, t_list **stack_b);
-void			rotate_a(t_list *stack_a);
-void			rotate_b(t_list *stack_b);
-void			rotate_both(t_list *stack_a, t_list *stack_b);
+void			rotate_a(t_list **stack_a);
+void			rotate_b(t_list **stack_b);
+void			rotate_both(t_list **stack_a, t_list **stack_b);
 
 t_list			*node_creation(int argc, char **argv);
 t_list			*ft_lstnew(int content);
@@ -68,5 +68,7 @@ void			ft_putnbr(int n, int *num_printed);
 void			ft_putunbr(unsigned int n, int *num_printed);
 void			ft_puthex(unsigned long long n, char c, int *num_printed);
 int				ft_printf(const char *format, ...);
+
+t_list			*find_min(t_list **stack_a);
 
 #endif

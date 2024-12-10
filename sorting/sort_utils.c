@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-static t_list	*find_min(t_list **stack_a)
+t_list	*find_min(t_list **stack_a)
 {
 	t_list	*min_node;
 	t_list	*ptr;
@@ -102,7 +102,7 @@ void	big_sort(t_list **stack_a, t_list **stack_b)
 			if ((((*stack_a)->index >> i) & 1) == 0)
 				push_b(stack_a, stack_b);
 			else
-				rotate_a(*stack_a);
+				rotate_a(stack_a);
 			count -= 1;
 		}
 		while (*stack_b)

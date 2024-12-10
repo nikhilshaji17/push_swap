@@ -31,7 +31,7 @@ void	three_sort(t_list **stack_a)
 			highest_node = (*stack_a)->next->next;
 	}
 	if ((*stack_a)->content == highest_node->content)
-		rotate_a(*stack_a);
+		rotate_a(stack_a);
 	else if ((*stack_a)->next->content == highest_node->content)
 		rev_rotate_a(stack_a);
 	if ((*stack_a)->content > (*stack_a)->next->content)
@@ -50,41 +50,36 @@ void	four_sort(t_list **stack_a, t_list **stack_b)
 		else if (((*stack_a)->content) < (*stack_a)->next->next->next->content)
 		{
 			swap_a(*stack_a);
-			rotate_a(*stack_a);
+			rotate_a(stack_a);
 			swap_a(*stack_a);
 			rev_rotate_a(stack_a);
 		}
 		else
-			rotate_a(*stack_a);
+			rotate_a(stack_a);
 	}
 }
 
 void	five_sort(t_list **a, t_list **b)
 {
+	t_list	*min;
+
+	(void) b;
+	min = find_min(a);
+	if (min->next == NULL)
+		rev_rotate_a(a);
+	else if (min->next->next == NULL)
+	{
+		rev_rotate_a(a);
+		rev_rotate_a(a);
+	}
+	else
+	{
+		while ((*a)->content != min->content)
+			rotate_a(a);
+	}
 	push_b(a, b);
 	four_sort(a, b);
 	push_a(a, b);
-	if ((*a)->content > (*a)->next->content)
-	{
-		if ((*a)->content < (*a)->next->next->content)
-			swap_a(*a);
-		else if (((*a)->content) < (*a)->next->next->next->content)
-		{
-			swap_a(*a);
-			rotate_a(*a);
-			swap_a(*a);
-			rev_rotate_a(a);
-		}
-		else if (((*a)->content) < (*a)->next->next->next->next->content)
-		{
-			rev_rotate_a(a);
-			swap_a(*a);
-			rotate_a(*a);
-			rotate_a(*a);
-		}
-		else
-			rotate_a(*a);
-	}
 }
 
 static int	is_sorted(t_list **stack_a)

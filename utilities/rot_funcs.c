@@ -12,57 +12,45 @@
 
 #include "../push_swap.h"
 
-void	rotate_a(t_list *stack_a)
+void	rotate_a(t_list **stack_a)
 {
-	t_list		*slow;
-	t_list		*fast;
-	int			temp;
-	long long	index;
+	t_list		*first;
+	t_list		*second;
+	t_list		*last;
 
-	if (!stack_a || !stack_a->next)
+	if (!stack_a || !*stack_a || !(*stack_a)->next)
 		return ;
-	slow = stack_a;
-	fast = stack_a->next;
-	temp = stack_a->content;
-	index = stack_a->index;
-	while (fast)
-	{
-		slow->content = fast->content;
-		slow->index = fast->index;
-		slow = fast;
-		fast = fast->next;
-	}
-	slow->content = temp;
-	slow->index = index;
+	first = *stack_a;
+	second = (*stack_a)->next;
+	last = *stack_a;
+	while (last->next)
+		last = last->next;
+	last->next = first;
+	first->next = NULL;
+	*stack_a = second;
 	ft_printf("ra\n");
 }
 
-void	rotate_b(t_list *stack_b)
+void	rotate_b(t_list **stack_b)
 {
-	t_list		*slow;
-	t_list		*fast;
-	int			temp;
-	long long	index;
+	t_list		*first;
+	t_list		*second;
+	t_list		*last;
 
-	if (!stack_b || !stack_b->next)
+	if (!stack_b || !*stack_b || !(*stack_b)->next)
 		return ;
-	slow = stack_b;
-	fast = stack_b->next;
-	temp = stack_b->content;
-	index = stack_b->index;
-	while (fast)
-	{
-		slow->content = fast->content;
-		slow->index = fast->index;
-		slow = fast;
-		fast = fast->next;
-	}
-	slow->content = temp;
-	slow->index = index;
+	first = *stack_b;
+	second = (*stack_b)->next;
+	last = *stack_b;
+	while (last->next)
+		last = last->next;
+	last->next = first;
+	first->next = NULL;
+	*stack_b = second;
 	ft_printf("rb\n");
 }
 
-void	rotate_both(t_list *stack_a, t_list *stack_b)
+void	rotate_both(t_list **stack_a, t_list **stack_b)
 {
 	rotate_a(stack_a);
 	rotate_b(stack_b);

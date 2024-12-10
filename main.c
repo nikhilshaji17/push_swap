@@ -12,6 +12,18 @@
 
 #include "push_swap.h"
 
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write(fd, &s[i], 1);
+		i += 1;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
@@ -23,15 +35,15 @@ int	main(int argc, char **argv)
 		exit(0);
 	if (check_input(argc, argv) == 0)
 	{
-		ft_printf("Error\n");
-		exit(INPUT_ERROR);
+		ft_putstr_fd("Error\n", STDERR_FILENO);
+		exit(STDERR_FILENO);
 	}
 	stack_a = node_creation(argc, argv);
 	if (stack_a == NULL || check_duplicates(stack_a) == 0)
 	{
-		ft_printf("Error\n");
+		ft_putstr_fd("Error\n", STDERR_FILENO);
 		ft_lstclear(&stack_a);
-		exit(INPUT_ERROR);
+		exit(STDERR_FILENO);
 	}
 	sort_stacks(&stack_a, &stack_b);
 	ft_lstclear(&stack_a);
