@@ -1,4 +1,4 @@
-# Push_swap Project Readme
+# Push_swap
 
 ## Overview
 
